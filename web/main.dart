@@ -6,6 +6,7 @@ import 'package:jogo/src/resultado.dart';
 late DivElement divOpcoes;
 late DivElement divResultado;
 late DivElement divResultadoPlayers;
+late DivElement divPontuacaoVoce;
 
 bool jogando = true;
 late Resultado resultado;
@@ -100,6 +101,7 @@ void inicializarReferencias() {
   divOpcoes = querySelector('#opcoes') as DivElement;
   divResultado = querySelector('#resultado') as DivElement;
   divResultadoPlayers = querySelector('#resultadoPlayers') as DivElement;
+  divPontuacaoVoce = querySelector('#pontuacaoVoce') as DivElement;
 }
 
 Partida configurarPartida() {

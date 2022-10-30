@@ -5,8 +5,4 @@ class Resultado {
 
   final ResultadoType resultadoType;
   final String resumo;
-  int? pontuacaoJogador;
-  int? pontuacaoMaquina;
-
-  void calcularPontuacao(ResultadoType resultadoType) {}
 }

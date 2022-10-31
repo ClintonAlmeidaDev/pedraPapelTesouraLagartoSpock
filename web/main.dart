@@ -7,6 +7,7 @@ late DivElement divOpcoes;
 late DivElement divResultado;
 late DivElement divResultadoPlayers;
 late DivElement divPontuacaoVoce;
+late DivElement divPontuacaoMaquina;
 
 bool jogando = true;
 late Resultado resultado;
@@ -27,6 +28,9 @@ void main() {
               jogarNovamenteBt(opcaoPlayer: partida.pc, mensagem: "Maquina");
               adicionarEspaco();
               mostrarResultado(resultado);
+
+              atualizaPontuacao(
+                  jogadorPontos: partida.contJogador, pcPontos: partida.contPc);
             }
           },
         )
@@ -49,8 +53,10 @@ void mostrarResultado(Resultado resultado) {
     case ResultadoType.vitoria:
       classeCss = 'venceu';
       mensagem = 'Você ganhou :D';
+      //resultado.contJogador = resultado.contJogador + 1;
       break;
     case ResultadoType.derrota:
+      //resultado.incluiPontoMaquina();
       classeCss = 'perdeu';
       mensagem = 'Você perdeu :/';
       break;
@@ -91,6 +97,13 @@ void jogarNovamenteBt({String? opcaoPlayer, String? mensagem}) {
     ..className = 'resultadoPlayersClass');
 }
 
+void atualizaPontuacao({num? jogadorPontos, num? pcPontos}) {
+  if (jogadorPontos != null && pcPontos != null) {
+    divPontuacaoVoce.innerText = jogadorPontos.toString();
+    divPontuacaoMaquina.innerText = pcPontos.toString();
+  }
+}
+
 void jogarNovamente(MouseEvent e) {
   jogando = true;
   divResultado.children.clear();
@@ -102,6 +115,7 @@ void inicializarReferencias() {
   divResultado = querySelector('#resultado') as DivElement;
   divResultadoPlayers = querySelector('#resultadoPlayers') as DivElement;
   divPontuacaoVoce = querySelector('#pontuacaoVoce') as DivElement;
+  divPontuacaoMaquina = querySelector('#pontuacaoMaquina') as DivElement;
 }
 
 Partida configurarPartida() {

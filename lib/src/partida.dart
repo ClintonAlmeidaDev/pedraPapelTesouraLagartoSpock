@@ -13,6 +13,16 @@ class Partida {
   final regras = <String, Map<String, String>>{};
 
   final pc = escolherPc();
+  late num contJogador = 0;
+  late int contPc = 0;
+
+  void incluiPontoJogador() {
+    contJogador = contJogador + 1;
+  }
+
+  void incluiPontoMaquina() {
+    contPc = contPc + 1;
+  }
 
   void criarRegra(String vencedor,
       {required String acao, required String perdedor}) {
@@ -29,11 +39,13 @@ class Partida {
 
     if (regras[humano]!.containsValue(pc)) {
       final entry = regras[humano]!.entries.firstWhere((e) => e.value == pc);
+      incluiPontoJogador();
       return Resultado(
           ResultadoType.vitoria, '$humano ${entry.key} ${entry.value}');
     }
 
     final entry = regras[pc]!.entries.firstWhere((e) => e.value == humano);
+    incluiPontoMaquina();
     return Resultado(ResultadoType.derrota, '$pc ${entry.key} ${entry.value}');
   }
 }

@@ -12,16 +12,23 @@ const opcoes = [pedra, papel, tesoura, lagarto, spock];
 class Partida {
   final regras = <String, Map<String, String>>{};
 
-  final pc = escolherPc();
+  late String pc = escolherPc();
   late num contJogador = 0;
   late int contPc = 0;
 
   void incluiPontoJogador() {
     contJogador = contJogador + 1;
+    pc = escolherPc();
   }
 
   void incluiPontoMaquina() {
     contPc = contPc + 1;
+    pc = escolherPc();
+  }
+
+  String escolherPc() {
+    int? index = Random().nextInt(5);
+    return opcoes[index];
   }
 
   void criarRegra(String vencedor,
@@ -48,9 +55,4 @@ class Partida {
     incluiPontoMaquina();
     return Resultado(ResultadoType.derrota, '$pc ${entry.key} ${entry.value}');
   }
-}
-
-String escolherPc() {
-  final index = Random().nextInt(5);
-  return opcoes[index];
 }

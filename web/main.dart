@@ -81,6 +81,7 @@ void adicionarEspaco() {
   divResultado.append(BRElement());
 }
 
+/// Metodo responsavel para o jogador conseguir jogar novamente
 void jogarNovamenteBt({String? opcaoPlayer, String? mensagem}) {
   var div = new DivElement()..id = "teste0123";
 
@@ -97,6 +98,7 @@ void jogarNovamenteBt({String? opcaoPlayer, String? mensagem}) {
     ..className = 'resultadoPlayersClass');
 }
 
+///Metodo responsavel por atualizar a pontuacao no final de todas as jogadas
 void atualizaPontuacao({num? jogadorPontos, num? pcPontos}) {
   if (jogadorPontos != null && pcPontos != null) {
     divPontuacaoVoce.innerText = jogadorPontos.toString();
